@@ -5,6 +5,6 @@ public class Main {
     public static PeriodicTableApp mainClass;
 
     public static void main(String[] args) {
-        mainClass = new PeriodicTableApp();
+        mainClass = new PeriodicTableApp(); // Start the application by calling the actual main class constructor
     }
 }
