@@ -15,7 +15,7 @@ public class PeriodicTableApp {
             try {
                 UIManager.setLookAndFeel(new SubstanceNightShadeLookAndFeel()); // Set the skin for the whole window
             } catch (Exception e) {
-                System.out.println("Substance Graphite failed to initialize");
+                System.out.println("Substance Night Shade failed to initialize");
                 e.printStackTrace();
                 System.exit(1);
             }
