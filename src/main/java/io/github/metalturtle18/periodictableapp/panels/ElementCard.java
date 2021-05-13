@@ -8,43 +8,60 @@ import java.awt.*;
 public class ElementCard extends JPanel {
 
     private final Element element;
-    private final JTextField atomicSymbol, name, atomicNumber, atomicMass;
+    private final JLabel atomicNumber, atomicSymbol, name, atomicMass;
+    private final JPanel atomicNumberPanel, atomicSymbolPanel, namePanel, atomicMassPanel;
+    private final int height, width;
 
-    public ElementCard(Element element) {
+    public ElementCard(Element element, int height, int width) {
         this.element = element;
+        this.height = height;
+        this.width = width;
 
-        atomicNumber = new JTextField(String.valueOf(element.atomicNumber));
-        atomicNumber.setFont(new Font("number", Font.PLAIN, 7));
+        atomicNumber = new JLabel(String.valueOf(element.atomicNumber));
+        atomicNumber.setFont(new Font("number", Font.PLAIN, 10));
         atomicNumber.setBorder(BorderFactory.createEmptyBorder());
-        atomicNumber.setAlignmentX(Component.LEFT_ALIGNMENT);
-        atomicNumber.setEditable(false);
+        atomicNumberPanel = new JPanel();
+        ((FlowLayout) atomicNumberPanel.getLayout()).setVgap(0);
+        ((FlowLayout) atomicNumberPanel.getLayout()).setHgap(0);
+        atomicNumberPanel.add(atomicNumber);
+        atomicNumberPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        atomicNumberPanel.setBackground(element.metalType.color);
 
-        atomicSymbol = new JTextField(element.symbol);
-        atomicSymbol.setFont(new Font("symbol", Font.BOLD, 15));
+        atomicSymbol = new JLabel(element.symbol);
+        atomicSymbol.setFont(new Font("symbol", Font.BOLD, 20));
         atomicSymbol.setBorder(BorderFactory.createEmptyBorder());
-        atomicSymbol.setAlignmentX(Component.CENTER_ALIGNMENT);
-        atomicSymbol.setEditable(false);
+        atomicSymbolPanel = new JPanel();
+        ((FlowLayout) atomicSymbolPanel.getLayout()).setVgap(0);
+        ((FlowLayout) atomicSymbolPanel.getLayout()).setHgap(0);
+        atomicSymbolPanel.add(atomicSymbol);
+        atomicSymbolPanel.setBackground(element.metalType.color);
 
-        atomicMass = new JTextField(String.valueOf(element.atomicMass));
-        atomicMass.setFont(new Font("mass", Font.BOLD, 10));
+        atomicMass = new JLabel(String.valueOf(element.atomicMass));
+        atomicMass.setFont(new Font("mass", Font.BOLD, 12));
         atomicMass.setBorder(BorderFactory.createEmptyBorder());
-        atomicMass.setAlignmentX(Component.CENTER_ALIGNMENT);
-        atomicMass.setEditable(false);
+        atomicMassPanel = new JPanel();
+        ((FlowLayout) atomicMassPanel.getLayout()).setVgap(0);
+        ((FlowLayout) atomicMassPanel.getLayout()).setHgap(0);
+        atomicMassPanel.add(atomicMass);
+        atomicMassPanel.setBackground(element.metalType.color);
 
-        name = new JTextField(element.name);
+        name = new JLabel(element.name);
         name.setFont(new Font("name", Font.BOLD, 10));
         name.setBorder(BorderFactory.createEmptyBorder());
-        name.setAlignmentX(Component.CENTER_ALIGNMENT);
-        name.setEditable(false);
+        namePanel = new JPanel();
+        ((FlowLayout) namePanel.getLayout()).setVgap(0);
+        ((FlowLayout) namePanel.getLayout()).setHgap(0);
+        namePanel.add(name);
+        namePanel.setBackground(element.metalType.color);
 
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        add(atomicNumberPanel);
+        add(atomicSymbolPanel);
+        add(atomicMassPanel);
+        add(namePanel);
+
+        BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        setLayout(layout);
         setBackground(element.metalType.color);
-        setOpaque(true);
-        setSize(50, 50);
-
-        add(atomicNumber);
-        add(atomicSymbol);
-        add(atomicMass);
-        add(name);
+        setPreferredSize(new Dimension(width, height));
     }
 }

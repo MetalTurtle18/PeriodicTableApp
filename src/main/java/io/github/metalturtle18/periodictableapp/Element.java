@@ -137,8 +137,8 @@ public enum Element {
      */
     public enum MetalType {
         METAL(new Color(248, 241, 219)),
-        NONMETAL(new Color(238, 226, 238)),
-        METALLOID(new Color(227, 235, 233)),
+        NONMETAL(new Color(227, 235, 233)),
+        METALLOID(new Color(238, 226, 238)),
         OTHER(Color.WHITE);
 
         public Color color;

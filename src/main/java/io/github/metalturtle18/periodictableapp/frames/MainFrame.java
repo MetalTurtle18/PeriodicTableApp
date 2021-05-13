@@ -11,13 +11,12 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         super("Periodic Table App");
         setLayout(new FlowLayout());
-        int i = 0;
+        int size = 80;
         for (Element e : Element.values()) {
-            add(new ElementCard(e));
-            i++;
-            if (i > 35) break;
+            add(new ElementCard(e, size, size));
         }
         setSize(600, 300);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setBackground(new Color(41, 42, 50));
     }
 }
