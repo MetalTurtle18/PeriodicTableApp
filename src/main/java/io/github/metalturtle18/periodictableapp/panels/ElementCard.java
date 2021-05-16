@@ -4,64 +4,74 @@ import io.github.metalturtle18.periodictableapp.Element;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class ElementCard extends JPanel {
+public class ElementCard extends JPanel implements MouseListener {
 
     private final Element element;
-    private final JLabel atomicNumber, atomicSymbol, name, atomicMass;
-    private final JPanel atomicNumberPanel, atomicSymbolPanel, namePanel, atomicMassPanel;
-    private final int height, width;
 
-    public ElementCard(Element element, int height, int width) {
+    public ElementCard(Element element) {
+        super(new GridBagLayout()); // Set the layout to GridBagLayout
         this.element = element;
-        this.height = height;
-        this.width = width;
 
-        atomicNumber = new JLabel(String.valueOf(element.atomicNumber));
-        atomicNumber.setFont(new Font("number", Font.PLAIN, 10));
-        atomicNumber.setBorder(BorderFactory.createEmptyBorder());
-        atomicNumberPanel = new JPanel();
-        ((FlowLayout) atomicNumberPanel.getLayout()).setVgap(0);
-        ((FlowLayout) atomicNumberPanel.getLayout()).setHgap(0);
-        atomicNumberPanel.add(atomicNumber);
-        atomicNumberPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-        atomicNumberPanel.setBackground(element.metalType.color);
+        JLabel label;
+        GridBagConstraints constraints = new GridBagConstraints();
 
-        atomicSymbol = new JLabel(element.symbol);
-        atomicSymbol.setFont(new Font("symbol", Font.BOLD, 20));
-        atomicSymbol.setBorder(BorderFactory.createEmptyBorder());
-        atomicSymbolPanel = new JPanel();
-        ((FlowLayout) atomicSymbolPanel.getLayout()).setVgap(0);
-        ((FlowLayout) atomicSymbolPanel.getLayout()).setHgap(0);
-        atomicSymbolPanel.add(atomicSymbol);
-        atomicSymbolPanel.setBackground(element.metalType.color);
+        label = new JLabel(String.valueOf(element.atomicNumber));
+        label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 14));
+        label.addMouseListener(this);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        add(label, constraints);
 
-        atomicMass = new JLabel(String.valueOf(element.atomicMass));
-        atomicMass.setFont(new Font("mass", Font.BOLD, 12));
-        atomicMass.setBorder(BorderFactory.createEmptyBorder());
-        atomicMassPanel = new JPanel();
-        ((FlowLayout) atomicMassPanel.getLayout()).setVgap(0);
-        ((FlowLayout) atomicMassPanel.getLayout()).setHgap(0);
-        atomicMassPanel.add(atomicMass);
-        atomicMassPanel.setBackground(element.metalType.color);
+        label = new JLabel(element.symbol);
+        label.setFont(new Font("SFProRounded-Bold", Font.PLAIN, 20));
+        label.addMouseListener(this);
+        constraints.gridy = 1;
+        constraints.gridwidth = 5;
+        constraints.gridheight = 2;
+        add(label, constraints);
 
-        name = new JLabel(element.name);
-        name.setFont(new Font("name", Font.BOLD, 10));
-        name.setBorder(BorderFactory.createEmptyBorder());
-        namePanel = new JPanel();
-        ((FlowLayout) namePanel.getLayout()).setVgap(0);
-        ((FlowLayout) namePanel.getLayout()).setHgap(0);
-        namePanel.add(name);
-        namePanel.setBackground(element.metalType.color);
+        label = new JLabel(String.valueOf(element.atomicMass));
+        label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 10));
+        label.addMouseListener(this);
+        constraints.gridy = 3;
+        constraints.gridheight = 1;
+        add(label, constraints);
 
-        add(atomicNumberPanel);
-        add(atomicSymbolPanel);
-        add(atomicMassPanel);
-        add(namePanel);
+        label = new JLabel(element.name);
+        label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 10));
+        label.addMouseListener(this);
+        constraints.gridy = 4;
+        add(label, constraints);
 
-        BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
-        setLayout(layout);
         setBackground(element.metalType.color);
-        setPreferredSize(new Dimension(width, height));
+        setPreferredSize(new Dimension(65, 65));
+        addMouseListener(this);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println(element.name);
+    }
+
+    // Unused mouse listeners
+    @Override
+    public void mousePressed(MouseEvent e) { }
+
+    @Override
+    public void mouseReleased(MouseEvent e) { }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        setBackground(element.metalType.color.brighter());
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        setBackground(element.metalType.color);
     }
 }

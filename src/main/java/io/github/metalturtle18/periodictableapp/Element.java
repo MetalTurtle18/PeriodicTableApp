@@ -74,7 +74,7 @@ public enum Element {
     ERBIUM("erbium", "Er", 68, -1, 6, 167.3, 1.24),
     THULIUM("thulium", "Tm", 69, -1, 6, 168.9, 1.25),
     YTTERBIUM("ytterbium", "Yb", 70, -1, 6, 173.1, 1.1),
-    LUTETIUM("lutetium", "Lu", 71, 3, 6, 175.0, 1.27),
+    LUTETIUM("lutetium", "Lu", 71, -1, 6, 175.0, 1.27),
     HAFNIUM("hafnium", "Hf", 72, 4, 6, 178.5, 1.3),
     TANTALUM("tantalum", "Ta", 73, 5, 6, 180.9, 1.5),
     TUNGSTEN("tungsten", "W", 74, 6, 6, 183.8, 2.36),
@@ -106,7 +106,7 @@ public enum Element {
     FERMIUM("fermium", "Fm", 100, -1, 7, 257, 1.3),
     MENDELEVIUM("mendelevium", "Md", 101, -1, 7, 258, 1.3),
     NOBELIUM("nobelium", "No", 102, -1, 7, 259, 1.3),
-    LAWRENCIUM("lawrencium", "Lr", 103, 3, 7, 266, 1.3),
+    LAWRENCIUM("lawrencium", "Lr", 103, -1, 7, 266, 1.3),
     RUTHERFORDIUM("rutherfordium", "Rf", 104, 4, 7, 267, -1),
     DUBNIUM("dubnium", "Db", 105, 5, 7, 268, -1),
     SEABORGIUM("seaborgium", "Sg", 106, 6, 7, 269, -1),
@@ -136,10 +136,10 @@ public enum Element {
      * Metal types of elements
      */
     public enum MetalType {
-        METAL(new Color(248, 241, 219)),
-        NONMETAL(new Color(227, 235, 233)),
-        METALLOID(new Color(238, 226, 238)),
-        OTHER(Color.WHITE);
+        METAL(new Color(200, 200, 82)),
+        NONMETAL(new Color(110, 210, 180)),
+        METALLOID(new Color(189, 136, 205)),
+        OTHER(new Color(127, 127, 127));
 
         public Color color;
 
