@@ -127,9 +127,15 @@ public enum Element {
      * States of matter
      */
     public enum MatterState {
-        SOLID,
-        LIQUID,
-        GAS
+        SOLID(Color.BLACK),
+        LIQUID(new Color(29, 55, 121)),
+        GAS(new Color(136, 25, 27));
+
+        public Color color;
+
+        MatterState(Color color) {
+            this.color = color;
+        }
     }
 
     /**

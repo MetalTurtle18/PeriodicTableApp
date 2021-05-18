@@ -2,29 +2,31 @@ package io.github.metalturtle18.periodictableapp.frames;
 
 import io.github.metalturtle18.periodictableapp.Element;
 import io.github.metalturtle18.periodictableapp.PeriodicTableApp;
+import io.github.metalturtle18.periodictableapp.listeners.TableListener;
 import io.github.metalturtle18.periodictableapp.panels.BlankCard;
 import io.github.metalturtle18.periodictableapp.panels.ElementCard;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class MainFrame extends JFrame implements MouseListener {
+public class MainFrame extends JFrame {
 
-    JPanel[][] elements, lanActs;
+    public JPanel[][] elements, lanActs;
 
     public MainFrame() {
         super("Periodic Table App");
         setLayout(new GridBagLayout());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setBackground(PeriodicTableApp.BACKGROUND_COLOR);
+        setResizable(false);
 
         JPanel elementPanel, lanActPanel, buttonPanel;
         JLabel redLabel;
 
-         elements = new JPanel[7][18];
-         lanActs = new JPanel[2][15];
+        elements = new JPanel[7][18];
+        lanActs = new JPanel[2][15];
 
-         // Fill the arrays with blank tiles
+        // Fill the arrays with blank tiles
         for (int r = 0; r < elements.length; r++) {
             for (int c = 0; c < elements[0].length; c++) {
                 elements[r][c] = new BlankCard();
@@ -71,13 +73,14 @@ public class MainFrame extends JFrame implements MouseListener {
             }
         }
 
+        TableListener listener = new TableListener(elements, lanActs);
         // The red button is for testing changing the table colors
         redLabel = new JLabel("Make Red");
-        redLabel.addMouseListener(this);
+        redLabel.addMouseListener(listener);
         buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.RED);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        buttonPanel.addMouseListener(this);
+        buttonPanel.addMouseListener(listener);
         buttonPanel.add(redLabel);
 
 
@@ -88,7 +91,6 @@ public class MainFrame extends JFrame implements MouseListener {
         constraints.gridheight = 7;
         add(elementPanel, constraints);
 
-        constraints.gridx = 2;
         constraints.gridy = 7;
         constraints.gridwidth = 15;
         constraints.gridheight = 2;
@@ -100,41 +102,7 @@ public class MainFrame extends JFrame implements MouseListener {
         constraints.gridheight = 1;
         add(buttonPanel, constraints);
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        getContentPane().setBackground(PeriodicTableApp.BACKGROUND_COLOR);
         pack();
-        setResizable(false);
         setVisible(true);
     }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        for (JPanel[] r : elements) {
-            for (JPanel p : r) {
-                if (p instanceof ElementCard) {
-                    ((ElementCard) p).setColor(new Color(127, 60, 60));
-                }
-            }
-        }
-
-        for (JPanel[] r : lanActs) {
-            for (JPanel p : r) {
-                if (p instanceof ElementCard) {
-                    ((ElementCard) p).setColor(new Color(127, 60, 60));
-                }
-            }
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) { }
-
-    @Override
-    public void mouseReleased(MouseEvent e) { }
-
-    @Override
-    public void mouseEntered(MouseEvent e) { }
-
-    @Override
-    public void mouseExited(MouseEvent e) { }
 }

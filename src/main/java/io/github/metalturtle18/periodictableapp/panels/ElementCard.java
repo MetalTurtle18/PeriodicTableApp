@@ -31,10 +31,14 @@ public class ElementCard extends JPanel implements MouseListener {
         constraints.gridy = 0;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
+        constraints.weightx = 1;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
         add(label, constraints);
 
         label = new JLabel(element.symbol);
         label.setFont(new Font("SFProRounded-Bold", Font.PLAIN, (int) (size / 3.25)));
+        label.setForeground(element.stateAtRoomTemperature.color);
+        label.setHorizontalAlignment(JLabel.CENTER);
         label.addMouseListener(this);
         constraints.gridy = 1;
         constraints.gridwidth = 5;
@@ -43,6 +47,7 @@ public class ElementCard extends JPanel implements MouseListener {
 
         label = new JLabel(String.valueOf(element.atomicMass));
         label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, (int) (size / 6.5)));
+        label.setHorizontalAlignment(JLabel.CENTER);
         label.addMouseListener(this);
         constraints.gridy = 3;
         constraints.gridheight = 1;
@@ -50,6 +55,7 @@ public class ElementCard extends JPanel implements MouseListener {
 
         label = new JLabel(element.name);
         label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, (int) (size / 6.5)));
+        label.setHorizontalAlignment(JLabel.CENTER);
         label.addMouseListener(this);
         constraints.gridy = 4;
         add(label, constraints);
@@ -66,7 +72,6 @@ public class ElementCard extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(element.name);
         if (isInTable)
             Main.mainClass.openElementPage(element);
         else
