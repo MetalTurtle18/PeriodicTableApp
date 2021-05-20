@@ -5,6 +5,7 @@ import io.github.metalturtle18.periodictableapp.PeriodicTableApp;
 import io.github.metalturtle18.periodictableapp.listeners.TableListener;
 import io.github.metalturtle18.periodictableapp.panels.BlankCard;
 import io.github.metalturtle18.periodictableapp.panels.ElementCard;
+import io.github.metalturtle18.periodictableapp.panels.NumberCard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,18 +24,18 @@ public class MainFrame extends JFrame {
         JPanel elementPanel, lanActPanel, buttonPanel;
         JLabel redLabel;
 
-        elements = new JPanel[7][18];
+        elements = new JPanel[8][19];
         lanActs = new JPanel[2][15];
 
         // Fill the arrays with blank tiles
         for (int r = 0; r < elements.length; r++) {
             for (int c = 0; c < elements[0].length; c++) {
-                elements[r][c] = new BlankCard();
+                elements[r][c] = new BlankCard(65);
             }
         }
         for (int r = 0; r < lanActs.length; r++) {
             for (int c = 0; c < lanActs[0].length; c++) {
-                lanActs[r][c] = new BlankCard();
+                lanActs[r][c] = new BlankCard(65);
             }
         }
 
@@ -43,7 +44,7 @@ public class MainFrame extends JFrame {
         int col7 = 0;
         for (Element e : Element.values()) {
             if (e.group != -1) {
-                elements[e.period - 1][e.group - 1] = new ElementCard(e, 65, true);
+                elements[e.period][e.group] = new ElementCard(e, 65, true);
             } else if (e.period == 6) {
                 lanActs[0][col6] = new ElementCard(e, 65, true);
                 col6++;
@@ -53,10 +54,39 @@ public class MainFrame extends JFrame {
             }
         }
 
+        // Manually add group and period labels to the main element array
+        elements[0][1] = new NumberCard(65, "1");
+        elements[1][2] = new NumberCard(65, "2");
+        elements[3][3] = new NumberCard(65, "3");
+        elements[3][4] = new NumberCard(65, "4");
+        elements[3][5] = new NumberCard(65, "5");
+        elements[3][6] = new NumberCard(65, "6");
+        elements[3][7] = new NumberCard(65, "7");
+        elements[3][8] = new NumberCard(65, "8");
+        elements[3][9] = new NumberCard(65, "9");
+        elements[3][10] = new NumberCard(65, "10");
+        elements[3][11] = new NumberCard(65, "11");
+        elements[3][12] = new NumberCard(65, "12");
+        elements[1][13] = new NumberCard(65, "13");
+        elements[1][14] = new NumberCard(65, "14");
+        elements[1][15] = new NumberCard(65, "15");
+        elements[1][16] = new NumberCard(65, "16");
+        elements[1][17] = new NumberCard(65, "17");
+        elements[0][18] = new NumberCard(65, "18");
+
+        elements[1][0] = new NumberCard(65, "1");
+        elements[2][0] = new NumberCard(65, "2");
+        elements[3][0] = new NumberCard(65, "3");
+        elements[4][0] = new NumberCard(65, "4");
+        elements[5][0] = new NumberCard(65, "5");
+        elements[6][0] = new NumberCard(65, "6");
+        elements[7][0] = new NumberCard(65, "7");
+
+
         // Create main element panel
-        elementPanel = new JPanel(new GridLayout(7, 18, 4, 4));
+        elementPanel = new JPanel(new GridLayout(8, 19, 4, 4));
         elementPanel.setBackground(PeriodicTableApp.BACKGROUND_COLOR);
-        elementPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
+//        elementPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
         for (JPanel[] row : elements) {
             for (JPanel p : row) {
                 elementPanel.add(p);
@@ -66,7 +96,7 @@ public class MainFrame extends JFrame {
         // Create lanthanide and actinide panel
         lanActPanel = new JPanel(new GridLayout(2, 15, 4, 4));
         lanActPanel.setBackground(PeriodicTableApp.BACKGROUND_COLOR);
-        lanActPanel.setBorder(BorderFactory.createEmptyBorder(10, 158, 20, 20));
+//        lanActPanel.setBorder(BorderFactory.createEmptyBorder(10, 158, 20, 20));
         for (JPanel[] row : lanActs) {
             for (JPanel p : row) {
                 lanActPanel.add(p);
@@ -79,32 +109,46 @@ public class MainFrame extends JFrame {
         redLabel.addMouseListener(listener);
         buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.RED);
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+//        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         buttonPanel.addMouseListener(listener);
         buttonPanel.add(redLabel);
 
+        LegendPanel legendPanel = new LegendPanel();
+
+        JPanel spacerPanel = new JPanel(new GridLayout(1, 19));
+
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0;
+
+        // Adding a row of invisible panels to initialize the GridBag grid size
         constraints.gridy = 0;
-        constraints.gridwidth = 18;
-        constraints.gridheight = 7;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        for (int i = 0; i < 19; i++) {
+            constraints.gridx = i;
+            add(new BlankCard(69, 20), constraints);
+        }
+
+        constraints.gridy = 1;
+        constraints.gridx = 0;
+        constraints.gridwidth = 19;
+        constraints.gridheight = 8;
         add(elementPanel, constraints);
 
-        constraints.gridy = 7;
+        constraints.gridy = 9;
+        constraints.gridx = 3;
         constraints.gridwidth = 15;
         constraints.gridheight = 2;
         add(lanActPanel, constraints);
 
+        constraints.gridy = 11;
         constraints.gridx = 0;
-        constraints.gridy = 9;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
+        constraints.gridwidth = 3;
         add(buttonPanel, constraints);
 
-        // TODO: Fix the alignment with this panel
-        constraints.gridx = 5;
-        add(new LegendPanel(), constraints);
+        constraints.gridx = 14;
+        constraints.gridwidth = 5;
+        add(legendPanel, constraints);
 
         pack();
         setLocationRelativeTo(null); // This centers the window on the screen
