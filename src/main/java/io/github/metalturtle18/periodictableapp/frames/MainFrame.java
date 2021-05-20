@@ -102,7 +102,60 @@ public class MainFrame extends JFrame {
         constraints.gridheight = 1;
         add(buttonPanel, constraints);
 
+        // TODO: Fix the alignment with this panel
+        constraints.gridx = 5;
+        add(new LegendPanel(), constraints);
+
         pack();
+        setLocationRelativeTo(null); // This centers the window on the screen
         setVisible(true);
+    }
+
+    /**
+     * This class will create a panel that goes on the main page that contains the key for the coloring of the element tiles
+     */
+    private static class LegendPanel extends JPanel {
+
+        public LegendPanel() {
+            super(new GridLayout(3, 3));
+            setBackground(PeriodicTableApp.BACKGROUND_COLOR);
+            setPreferredSize(new Dimension(300, 90));
+
+            // These are the six items in the legend panel
+            add(new ColoredLabel(Element.MetalType.METAL.color, "Metal"));
+            add(new ColoredLabel(Element.MatterState.SOLID.color, "Solid"));
+            add(new ColoredLabel(Element.MetalType.METALLOID.color, "Metalloid"));
+            add(new ColoredLabel(Element.MatterState.LIQUID.color, "Liquid"));
+            add(new ColoredLabel(Element.MetalType.NONMETAL.color, "Nonmetal"));
+            add(new ColoredLabel(Element.MatterState.GAS.color, "Gas"));
+        }
+
+        /**
+         * A class within a class within a class
+         * This just makes it easy to draw the colored square and text for the legend
+         */
+        private static class ColoredLabel extends JPanel {
+
+            private final Color color;
+            private final String label;
+
+            public ColoredLabel(Color color, String label) {
+                this.color = color;
+                this.label = label;
+
+                setPreferredSize(new Dimension(getWidth(), 30));
+                setBackground(PeriodicTableApp.BACKGROUND_COLOR);
+            }
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(color);
+                g.fillRect(5, 5, 20, 20);
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
+                g.drawString(label, 30, 21);
+            }
+        }
     }
 }
