@@ -55,33 +55,11 @@ public class MainFrame extends JFrame {
         }
 
         // Manually add group and period labels to the main element array
-        elements[0][1] = new NumberCard(65, "1");
-        elements[1][2] = new NumberCard(65, "2");
-        elements[3][3] = new NumberCard(65, "3");
-        elements[3][4] = new NumberCard(65, "4");
-        elements[3][5] = new NumberCard(65, "5");
-        elements[3][6] = new NumberCard(65, "6");
-        elements[3][7] = new NumberCard(65, "7");
-        elements[3][8] = new NumberCard(65, "8");
-        elements[3][9] = new NumberCard(65, "9");
-        elements[3][10] = new NumberCard(65, "10");
-        elements[3][11] = new NumberCard(65, "11");
-        elements[3][12] = new NumberCard(65, "12");
-        elements[1][13] = new NumberCard(65, "13");
-        elements[1][14] = new NumberCard(65, "14");
-        elements[1][15] = new NumberCard(65, "15");
-        elements[1][16] = new NumberCard(65, "16");
-        elements[1][17] = new NumberCard(65, "17");
-        elements[0][18] = new NumberCard(65, "18");
-
-        elements[1][0] = new NumberCard(65, "1");
-        elements[2][0] = new NumberCard(65, "2");
-        elements[3][0] = new NumberCard(65, "3");
-        elements[4][0] = new NumberCard(65, "4");
-        elements[5][0] = new NumberCard(65, "5");
-        elements[6][0] = new NumberCard(65, "6");
-        elements[7][0] = new NumberCard(65, "7");
-
+        int[] rowsList = new int[]{0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 0}; // This is arbitrary but it is just a list of the rows for the group numbers
+        for (int i = 1; i <= 18; i++) // Fill group numbers
+            elements[rowsList[i - 1]][i] = new NumberCard(65, String.valueOf(i), "bottom");
+        for (int i = 1; i <= 7; i++) // Fill period numbers
+            elements[i][0] = new NumberCard(65, String.valueOf(i), "right");
 
         // Create main element panel
         elementPanel = new JPanel(new GridLayout(8, 19, 4, 4));
@@ -96,56 +74,49 @@ public class MainFrame extends JFrame {
         // Create lanthanide and actinide panel
         lanActPanel = new JPanel(new GridLayout(2, 15, 4, 4));
         lanActPanel.setBackground(PeriodicTableApp.BACKGROUND_COLOR);
-//        lanActPanel.setBorder(BorderFactory.createEmptyBorder(10, 158, 20, 20));
+        lanActPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
         for (JPanel[] row : lanActs) {
             for (JPanel p : row) {
                 lanActPanel.add(p);
             }
         }
 
-        TableListener listener = new TableListener(elements, lanActs);
-        // The red button is for testing changing the table colors
-        redLabel = new JLabel("Make Red");
-        redLabel.addMouseListener(listener);
-        buttonPanel = new JPanel();
-        buttonPanel.setBackground(Color.RED);
-//        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        buttonPanel.addMouseListener(listener);
-        buttonPanel.add(redLabel);
-
         LegendPanel legendPanel = new LegendPanel();
-
-        JPanel spacerPanel = new JPanel(new GridLayout(1, 19));
-
 
         GridBagConstraints constraints = new GridBagConstraints();
 
-        // Adding a row of invisible panels to initialize the GridBag grid size
+        // Adding a row of invisible panels to initialize the GridBag column size
         constraints.gridy = 0;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i <= 19; i++) {
             constraints.gridx = i;
-            add(new BlankCard(69, 20), constraints);
+            add(new BlankCard(69, 1), constraints);
+        }
+        // Adding a column of invisible panels to initialize the GridBag row size
+        constraints.gridx = 19;
+        for (int i = 1; i <= 12; i++) {
+            constraints.gridy = i;
+            add(new BlankCard(1, 69), constraints);
         }
 
+        // Configure constraints and add panels to the frame
+        // Main elements panel
         constraints.gridy = 1;
         constraints.gridx = 0;
         constraints.gridwidth = 19;
         constraints.gridheight = 8;
         add(elementPanel, constraints);
 
+        // Lanthanides and actinides panel
         constraints.gridy = 9;
         constraints.gridx = 3;
         constraints.gridwidth = 15;
         constraints.gridheight = 2;
         add(lanActPanel, constraints);
 
-        constraints.gridy = 11;
-        constraints.gridx = 0;
-        constraints.gridwidth = 3;
-        add(buttonPanel, constraints);
-
+        // Legend panel
+        constraints.gridy = 12;
         constraints.gridx = 14;
         constraints.gridwidth = 5;
         add(legendPanel, constraints);
@@ -163,7 +134,8 @@ public class MainFrame extends JFrame {
         public LegendPanel() {
             super(new GridLayout(3, 3));
             setBackground(PeriodicTableApp.BACKGROUND_COLOR);
-            setPreferredSize(new Dimension(300, 90));
+            setPreferredSize(new Dimension(220, 90));
+            setBorder(BorderFactory.createLineBorder(Color.WHITE, 3, true));
 
             // These are the six items in the legend panel
             add(new ColoredLabel(Element.MetalType.METAL.color, "Metal"));
@@ -200,6 +172,14 @@ public class MainFrame extends JFrame {
                 g.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
                 g.drawString(label, 30, 21);
             }
+        }
+    }
+
+    private static class ButtonPanel extends JPanel {
+        public ButtonPanel() {
+            super(new GridLayout(1, 2));
+
+//            JButton metalButton, familyButton
         }
     }
 }

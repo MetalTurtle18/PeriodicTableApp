@@ -54,6 +54,7 @@ public class ElementFrame extends JFrame {
 
     /**
      * Simple static method to capitalize the first character of a string
+     *
      * @param str the string to capitalize
      * @return the capitalized string
      */
