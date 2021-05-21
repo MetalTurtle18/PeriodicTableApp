@@ -128,7 +128,7 @@ public enum Element {
      */
     public enum MatterState {
         SOLID(Color.WHITE),
-        LIQUID(new Color(62, 94, 186)),
+        LIQUID(new Color(61, 179, 179)),
         GAS(new Color(196, 56, 58));
 
         public final Color color;
