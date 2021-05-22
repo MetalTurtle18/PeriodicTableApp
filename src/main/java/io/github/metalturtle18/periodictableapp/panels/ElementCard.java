@@ -2,6 +2,7 @@ package io.github.metalturtle18.periodictableapp.panels;
 
 import io.github.metalturtle18.periodictableapp.Element;
 import io.github.metalturtle18.periodictableapp.Main;
+import io.github.metalturtle18.periodictableapp.PeriodicTableApp;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,12 +15,23 @@ public class ElementCard extends JPanel implements MouseListener {
     private final boolean isInTable;
 
     private Color color;
+    private final JLabel numberLabel;
 
     public ElementCard(Element element, int size, boolean inTable) {
         super(new GridBagLayout()); // Set the layout to GridBagLayout
         this.element = element;
         isInTable = inTable;
-        color = element.metalType.color;
+
+        switch(PeriodicTableApp.displayMode) {
+            case GROUP -> color = element.elementFamily.color;
+            case ELECTRONEGATIVITY -> {
+                if (element.electronegativity != -1)
+                    color = Color.getHSBColor(0.58f, 1.0f, (float) (element.electronegativity / 4));
+                else
+                    color = PeriodicTableApp.BACKGROUND_COLOR;
+            }
+            default -> color = element.metalType.color;
+        }
 
         JLabel label;
         GridBagConstraints constraints = new GridBagConstraints();
@@ -46,14 +58,14 @@ public class ElementCard extends JPanel implements MouseListener {
         constraints.gridheight = 2;
         add(label, constraints);
 
-        label = new JLabel(String.valueOf(element.atomicMass));
-        label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, (int) (size / 6.5)));
-        label.setForeground(Color.WHITE);
-        label.setHorizontalAlignment(JLabel.CENTER);
-        label.addMouseListener(this);
+        numberLabel = new JLabel(String.valueOf(PeriodicTableApp.displayMode == PeriodicTableApp.DisplayMode.ELECTRONEGATIVITY ? (element.electronegativity != -1 ? element.electronegativity : "n/a") : element.atomicMass));
+        numberLabel.setFont(new Font("SFProRounded-Regular", Font.PLAIN, (int) (size / 6.5)));
+        numberLabel.setForeground(Color.WHITE);
+        numberLabel.setHorizontalAlignment(JLabel.CENTER);
+        numberLabel.addMouseListener(this);
         constraints.gridy = 3;
         constraints.gridheight = 1;
-        add(label, constraints);
+        add(numberLabel, constraints);
 
         label = new JLabel(element.name);
         label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, (int) (size / 6.5)));
@@ -63,7 +75,7 @@ public class ElementCard extends JPanel implements MouseListener {
         constraints.gridy = 4;
         add(label, constraints);
 
-        setBackground(element.metalType.color);
+        setBackground(color);
         setPreferredSize(new Dimension(size, size));
         addMouseListener(this);
     }
@@ -71,6 +83,21 @@ public class ElementCard extends JPanel implements MouseListener {
     public void setColor(Color color) {
         setBackground(color);
         this.color = color;
+    }
+
+    public void setElectronegativityLabel() {
+        if (element.electronegativity == -1)
+            numberLabel.setText("n/a");
+        else
+            numberLabel.setText(String.valueOf(element.electronegativity));
+    }
+
+    public void setAtomicMassLabel() {
+        numberLabel.setText(String.valueOf(element.atomicMass));
+    }
+
+    public Element getElement() {
+        return element;
     }
 
     @Override
