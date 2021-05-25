@@ -5,6 +5,7 @@ import io.github.metalturtle18.periodictableapp.PeriodicTableApp;
 import io.github.metalturtle18.periodictableapp.listeners.ElectronegativityColorListener;
 import io.github.metalturtle18.periodictableapp.listeners.FamilyColorListener;
 import io.github.metalturtle18.periodictableapp.listeners.MetalColorListener;
+import io.github.metalturtle18.periodictableapp.listeners.SongButtonListener;
 import io.github.metalturtle18.periodictableapp.panels.BlankCard;
 import io.github.metalturtle18.periodictableapp.panels.ElementCard;
 import io.github.metalturtle18.periodictableapp.panels.NumberCard;
@@ -154,7 +155,7 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * This class will create a panel that goes on the main page that contains the key for the coloring of the element tiles
+     * This class will create a panel that goes on the main page that contains the key for the coloring of the element tiles in the metal mode
      */
     private static class MetalLegendPanel extends JPanel {
         public MetalLegendPanel() {
@@ -166,11 +167,11 @@ public class MainFrame extends JFrame {
             // These are the six items in the legend panel
             JPanel legendPanel = new JPanel(new GridLayout(3, 2));
             legendPanel.add(new ColoredLabel(Element.MetalType.METAL.color, "Metal"));
-            legendPanel.add(new ColoredLabel(Element.MatterState.SOLID.color, "Solid"));
+            legendPanel.add(new ColoredLabel(Element.MatterState.SOLID.color, "Solid", true));
             legendPanel.add(new ColoredLabel(Element.MetalType.METALLOID.color, "Metalloid"));
-            legendPanel.add(new ColoredLabel(Element.MatterState.LIQUID.color, "Liquid"));
+            legendPanel.add(new ColoredLabel(Element.MatterState.LIQUID.color, "Liquid", true));
             legendPanel.add(new ColoredLabel(Element.MetalType.NONMETAL.color, "Nonmetal"));
-            legendPanel.add(new ColoredLabel(Element.MatterState.GAS.color, "Gas"));
+            legendPanel.add(new ColoredLabel(Element.MatterState.GAS.color, "Gas", true));
 
             JLabel label = new JLabel("Metal Type Legend");
             label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
@@ -182,6 +183,9 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * This class will create a panel that goes on the main page that contains the key for the coloring of the element tiles in the group mode
+     */
     private static class FamilyLegendPanel extends JPanel {
         public FamilyLegendPanel() {
             super(new BorderLayout());
@@ -189,20 +193,20 @@ public class MainFrame extends JFrame {
             setPreferredSize(new Dimension(690, 120));
             setBorder(BorderFactory.createLineBorder(Color.WHITE, 3, true));
 
-            // These are the six items in the legend panel
-            JPanel legendPanel = new JPanel(new GridLayout(3, 2));
+            // These are the twelve items in the legend panel
+            JPanel legendPanel = new JPanel(new GridLayout(3, 4));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.ALKALI_METALS.color, "Alkali metals"));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.ALKALINE_EARTH_METALS.color, "Alkaline earth metals"));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.TRANSITION_METALS.color, "Transition metals"));
-            legendPanel.add(new ColoredLabel(Element.MatterState.SOLID.color, "Solid"));
-            legendPanel.add(new ColoredLabel(Element.ElementFamily.POST_TRANSITION_METALS.color, "Post-transition metals"));
+            legendPanel.add(new ColoredLabel(Element.ElementFamily.NONMETALS.color, "Nonmetals"));
+            legendPanel.add(new ColoredLabel(Element.ElementFamily.OTHER_METALS.color, "Other Metals"));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.METALLOIDS.color, "Metalloids"));
-            legendPanel.add(new ColoredLabel(Element.ElementFamily.REACTIVE_NONMETALS.color, "Reactive nonmetals"));
-            legendPanel.add(new ColoredLabel(Element.MatterState.LIQUID.color, "Liquid"));
+            legendPanel.add(new ColoredLabel(Element.ElementFamily.HALOGENS.color, "Halogens"));
+            legendPanel.add(new ColoredLabel(Element.MatterState.LIQUID.color, "Liquid", true));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.NOBLE_GASES.color, "Noble gases"));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.LANTHANIDES.color, "Lanthanides"));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.ACTINIDES.color, "Actinides"));
-            legendPanel.add(new ColoredLabel(Element.MatterState.GAS.color, "Gas"));
+            legendPanel.add(new ColoredLabel(Element.MatterState.GAS.color, "Gas", true));
 
             JLabel label = new JLabel("Element Group Legend");
             label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
@@ -214,6 +218,9 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * This class will create a panel that goes on the main page that contains the key for the coloring of the element tiles in the electronegativity mode
+     */
     private static class ElectronegativityLegendPanel extends JPanel {
         public ElectronegativityLegendPanel() {
             super(new BorderLayout());
@@ -232,19 +239,22 @@ public class MainFrame extends JFrame {
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
                     Graphics2D g2 = (Graphics2D) g;
-                    g2.setPaint(new GradientPaint(0, 60, Color.BLACK, 590, 60, new Color(0, 137, 255)));
-                    g2.fillRect(0, 22, 590, 80);
+                    g2.setPaint(new GradientPaint(0, 40, Color.BLACK, 590, 40, new Color(0, 137, 255)));
+                    g2.fillRect(0, 0, 590, 80);
                 }
             };
             gradientPanel.setBackground(PeriodicTableApp.BACKGROUND_COLOR);
-            gradientPanel.setAlignmentY(0.5f);
+            gradientPanel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+            JPanel gradientPanelContainer = new JPanel();
+            gradientPanelContainer.setBackground(PeriodicTableApp.BACKGROUND_COLOR);
+            gradientPanelContainer.add(gradientPanel);
 
-            JLabel lowLabel = new JLabel("Low");
+            JLabel lowLabel = new JLabel(" Low");
             lowLabel.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
             lowLabel.setForeground(Color.WHITE);
             lowLabel.setVerticalAlignment(JLabel.CENTER);
 
-            JLabel highLabel = new JLabel("High");
+            JLabel highLabel = new JLabel("High ");
             highLabel.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
             highLabel.setForeground(Color.WHITE);
             highLabel.setVerticalAlignment(JLabel.CENTER);
@@ -256,13 +266,16 @@ public class MainFrame extends JFrame {
 
             add(titleLabel, BorderLayout.NORTH);
             add(lowLabel, BorderLayout.WEST);
-            add(gradientPanel, BorderLayout.CENTER);
+            add(gradientPanelContainer, BorderLayout.CENTER);
             add(highLabel, BorderLayout.EAST);
 
         }
 
     }
 
+    /**
+     * This class will create a panel that goes on the main page that contains the buttons to change the view of the main page
+     */
     private static class ButtonPanel extends JPanel {
         public ButtonPanel() {
             super(new GridLayout(2, 2));
@@ -270,7 +283,7 @@ public class MainFrame extends JFrame {
             setPreferredSize(new Dimension(250, 90));
             setBorder(BorderFactory.createLineBorder(Color.WHITE, 3, true));
 
-            JButton metalButton, familyButton, electronegativityButton;
+            JButton metalButton, familyButton, electronegativityButton, songButton;
 
             metalButton = new JButton("Metal Types");
             metalButton.addActionListener(new MetalColorListener());
@@ -283,23 +296,33 @@ public class MainFrame extends JFrame {
             electronegativityButton = new JButton("Electronegativity");
             electronegativityButton.addActionListener(new ElectronegativityColorListener());
             add(electronegativityButton);
+
+            songButton = new JButton("Play Song");
+            songButton.addActionListener(new SongButtonListener());
+            add(songButton);
         }
     }
 
     /**
-     * This makes it easy to draw the colored square and text for the legend
+     * This class makes it easy to draw the colored square and text for the legend panels
      */
     private static class ColoredLabel extends JPanel {
 
         private final Color color;
         private final String label;
+        private final boolean colorText;
 
-        public ColoredLabel(Color color, String label) {
+        public ColoredLabel(Color color, String label, boolean colorText) {
             this.color = color;
             this.label = label;
+            this.colorText = colorText;
 
             setPreferredSize(new Dimension(getWidth(), 30));
             setBackground(PeriodicTableApp.BACKGROUND_COLOR);
+        }
+
+        public ColoredLabel(Color color, String label) {
+            this(color, label, false);
         }
 
         @Override
@@ -307,7 +330,7 @@ public class MainFrame extends JFrame {
             super.paintComponent(g);
             g.setColor(color);
             g.fillRect(5, 5, 20, 20);
-            g.setColor(Color.WHITE);
+            if (!colorText) g.setColor(Color.WHITE);
             g.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
             g.drawString(label, 30, 21);
         }

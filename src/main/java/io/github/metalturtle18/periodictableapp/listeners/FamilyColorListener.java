@@ -30,5 +30,6 @@ public class FamilyColorListener implements ActionListener {
         constraints.gridy = 12;
         mainFrame.add(mainFrame.familyLegendPanel, constraints);
         mainFrame.repaint();
+        mainFrame.familyLegendPanel.updateUI();
     }
 }

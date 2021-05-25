@@ -4,23 +4,23 @@ import java.awt.*;
 
 public enum Element {
 
-    HYDROGEN("hydrogen", "H", 1, 1, 1, 1.008, 2.20, MatterState.GAS, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
+    HYDROGEN("hydrogen", "H", 1, 1, 1, 1.008, 2.20, MatterState.GAS, MetalType.NONMETAL, ElementFamily.HALOGENS),
     HELIUM("helium", "He", 2, 18, 1, 4.003, -1, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NOBLE_GASES),
     LITHIUM("lithium", "Li", 3, 1, 2, 6.94, 0.98, ElementFamily.ALKALI_METALS),
     BERYLLIUM("beryllium", "Be", 4, 2, 2, 9.012, 1.57, ElementFamily.ALKALINE_EARTH_METALS),
     BORON("boron", "B", 5, 13, 2, 10.81, 2.04, MetalType.METALLOID, ElementFamily.METALLOIDS),
-    CARBON("carbon", "C", 6, 14, 2, 12.01, 2.55, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
-    NITROGEN("nitrogen", "N", 7, 15, 2, 14.01, 3.04, MatterState.GAS, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
-    OXYGEN("oxygen", "O", 8, 16, 2, 16.00, 3.44, MatterState.GAS, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
-    FLUORINE("fluorine", "F", 9, 17, 2, 19.00, 3.98, MatterState.GAS, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
+    CARBON("carbon", "C", 6, 14, 2, 12.01, 2.55, MetalType.NONMETAL, ElementFamily.NONMETALS),
+    NITROGEN("nitrogen", "N", 7, 15, 2, 14.01, 3.04, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NONMETALS),
+    OXYGEN("oxygen", "O", 8, 16, 2, 16.00, 3.44, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NONMETALS),
+    FLUORINE("fluorine", "F", 9, 17, 2, 19.00, 3.98, MatterState.GAS, MetalType.NONMETAL, ElementFamily.HALOGENS),
     NEON("neon", "Ne", 10, 18, 2, 20.18, -1, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NOBLE_GASES),
     SODIUM("sodium", "Na", 11, 1, 3, 22.99, 0.93, ElementFamily.ALKALI_METALS),
     MAGNESIUM("magnesium", "Mg", 12, 2, 3, 24.30, 1.31, ElementFamily.ALKALINE_EARTH_METALS),
-    ALUMINUM("aluminum", "Al", 13, 13, 3, 26.98, 1.61, ElementFamily.POST_TRANSITION_METALS),
+    ALUMINUM("aluminum", "Al", 13, 13, 3, 26.98, 1.61, ElementFamily.OTHER_METALS),
     SILICON("silicon", "Si", 14, 14, 3, 28.09, 1.90, MetalType.METALLOID, ElementFamily.METALLOIDS),
-    PHOSPHORUS("phosphorus", "P", 15, 15, 3, 30.97, 2.19, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
-    SULFUR("sulfur", "S", 16, 16, 3, 32.06, 2.58, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
-    CHLORINE("chlorine", "Cl", 17, 17, 3, 35.45, 3.16, MatterState.GAS, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
+    PHOSPHORUS("phosphorus", "P", 15, 15, 3, 30.97, 2.19, MetalType.NONMETAL, ElementFamily.NONMETALS),
+    SULFUR("sulfur", "S", 16, 16, 3, 32.06, 2.58, MetalType.NONMETAL, ElementFamily.NONMETALS),
+    CHLORINE("chlorine", "Cl", 17, 17, 3, 35.45, 3.16, MatterState.GAS, MetalType.NONMETAL, ElementFamily.HALOGENS),
     ARGON("argon", "Ar", 18, 18, 3, 39.95, -1, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NOBLE_GASES),
     POTASSIUM("potassium", "K", 19, 1, 4, 39.10, 0.82, ElementFamily.ALKALI_METALS),
     CALCIUM("calcium", "Ca", 20, 2, 4, 40.08, 1.00, ElementFamily.ALKALINE_EARTH_METALS),
@@ -34,11 +34,11 @@ public enum Element {
     NICKEL("nickel", "Ni", 28, 10, 4, 58.69, 1.91),
     COPPER("copper", "Cu", 29, 11, 4, 63.55, 1.90),
     ZINC("zinc", "Zn", 30, 12, 4, 65.38, 1.65),
-    GALLIUM("gallium", "Ga", 31, 13, 4, 69.72, 1.81, ElementFamily.POST_TRANSITION_METALS),
+    GALLIUM("gallium", "Ga", 31, 13, 4, 69.72, 1.81, ElementFamily.OTHER_METALS),
     GERMANIUM("germanium", "Ge", 32, 14, 4, 72.63, 2.01, MetalType.METALLOID, ElementFamily.METALLOIDS),
     ARSENIC("arsenic", "As", 33, 15, 4, 74.92, 2.18, MetalType.METALLOID, ElementFamily.METALLOIDS),
-    SELENIUM("selenium", "Se", 34, 16, 4, 78.97, 2.55, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
-    BROMINE("bromine", "Br", 35, 17, 4, 79.90, 2.96, MatterState.LIQUID, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
+    SELENIUM("selenium", "Se", 34, 16, 4, 78.97, 2.55, MetalType.NONMETAL, ElementFamily.NONMETALS),
+    BROMINE("bromine", "Br", 35, 17, 4, 79.90, 2.96, MatterState.LIQUID, MetalType.NONMETAL, ElementFamily.HALOGENS),
     KRYPTON("krypton", "Kr", 36, 18, 4, 83.80, -1, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NOBLE_GASES),
     RUBIDIUM("rubidium", "Rb", 37, 1, 5, 85.47, 0.82, ElementFamily.ALKALI_METALS),
     STRONTIUM("strontium", "Sr", 38, 2, 5, 87.62, 0.95, ElementFamily.ALKALINE_EARTH_METALS),
@@ -52,11 +52,11 @@ public enum Element {
     PALLADIUM("palladium", "Pd", 46, 10, 5, 106.4, 2.20),
     SILVER("silver", "Ag", 47, 11, 5, 107.9, 1.93),
     CADMIUM("cadmium", "Cd", 48, 12, 5, 112.4, 1.69),
-    INDIUM("indium", "In", 49, 13, 5, 114.8, 1.78, ElementFamily.POST_TRANSITION_METALS),
-    TIN("tin", "Sn", 50, 14, 5, 118.7, 1.96, ElementFamily.POST_TRANSITION_METALS),
+    INDIUM("indium", "In", 49, 13, 5, 114.8, 1.78, ElementFamily.OTHER_METALS),
+    TIN("tin", "Sn", 50, 14, 5, 118.7, 1.96, ElementFamily.OTHER_METALS),
     ANTIMONY("antimony", "Sb", 51, 15, 5, 121.8, 2.05, MetalType.METALLOID, ElementFamily.METALLOIDS),
     TELLURIUM("tellurium", "Te", 52, 16, 5, 127.6, 2.1, MetalType.METALLOID, ElementFamily.METALLOIDS),
-    IODINE("iodine", "I", 53, 17, 5, 126.9, 2.66, MetalType.NONMETAL, ElementFamily.REACTIVE_NONMETALS),
+    IODINE("iodine", "I", 53, 17, 5, 126.9, 2.66, MetalType.NONMETAL, ElementFamily.HALOGENS),
     XENON("xenon", "Xe", 54, 18, 5, 131.3, -1, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NOBLE_GASES),
     CAESIUM("caesium", "Cs", 55, 1, 6, 132.9, 0.79, ElementFamily.ALKALI_METALS),
     BARIUM("barium", "Ba", 56, 2, 6, 137.3, 0.89, ElementFamily.ALKALINE_EARTH_METALS),
@@ -84,11 +84,11 @@ public enum Element {
     PLATINUM("platinum", "Pt", 78, 10, 6, 195.1, 2.28),
     GOLD("gold", "Au", 79, 11, 6, 197.0, 2.54),
     MERCURY("mercury", "Hg", 80, 12, 6, 200.6, 2.00, MatterState.LIQUID),
-    THALLIUM("thallium", "Tl", 81, 13, 6, 204.4, 1.62, ElementFamily.POST_TRANSITION_METALS),
-    LEAD("lead", "Pb", 82, 14, 6, 207.2, 1.87, ElementFamily.POST_TRANSITION_METALS),
-    BISMUTH("bismuth", "Bi", 83, 15, 6, 209.0, 2.02, ElementFamily.POST_TRANSITION_METALS),
-    POLONIUM("polonium", "Po", 84, 16, 6, 209, 2.0, ElementFamily.POST_TRANSITION_METALS),
-    ASTATINE("astatine", "At", 85, 17, 6, 210, 2.2, MetalType.METALLOID, ElementFamily.METALLOIDS),
+    THALLIUM("thallium", "Tl", 81, 13, 6, 204.4, 1.62, ElementFamily.OTHER_METALS),
+    LEAD("lead", "Pb", 82, 14, 6, 207.2, 1.87, ElementFamily.OTHER_METALS),
+    BISMUTH("bismuth", "Bi", 83, 15, 6, 209.0, 2.02, ElementFamily.OTHER_METALS),
+    POLONIUM("polonium", "Po", 84, 16, 6, 209, 2.0, ElementFamily.OTHER_METALS),
+    ASTATINE("astatine", "At", 85, 17, 6, 210, 2.2, MetalType.METALLOID, ElementFamily.HALOGENS),
     RADON("radon", "Rn", 86, 18, 6, 222, -1, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NOBLE_GASES),
     FRANCIUM("francium", "Fr", 87, 1, 7, 223, 0.79, ElementFamily.ALKALI_METALS),
     RADIUM("radium", "Ra", 88, 2, 7, 226, 0.9, ElementFamily.ALKALINE_EARTH_METALS),
@@ -115,9 +115,9 @@ public enum Element {
     MEITNERIUM("meitnerium", "Mt", 109, 9, 7, 278, -1, MetalType.OTHER, ElementFamily.OTHER),
     DARMSTADTIUM("darmstadtium", "Ds", 110, 10, 7, 281, -1, MetalType.OTHER, ElementFamily.OTHER),
     ROENTGENIUM("roentgenium", "Rg", 111, 11, 7, 282, -1, MetalType.OTHER, ElementFamily.OTHER),
-    COPERNICIUM("copernicium", "Cn", 112, 12, 7, 285, -1, MetalType.OTHER, ElementFamily.OTHER),
+    COPERNICIUM("copernicium", "Cn", 112, 12, 7, 285, -1, MetalType.OTHER, ElementFamily.TRANSITION_METALS),
     NIHONIUM("nihonium", "Nh", 113, 13, 7, 286, -1, MetalType.OTHER, ElementFamily.OTHER),
-    FLEROVIUM("flerovium", "Fl", 114, 14, 7, 289, -1, MetalType.OTHER, ElementFamily.OTHER),
+    FLEROVIUM("flerovium", "Fl", 114, 14, 7, 289, -1, MetalType.OTHER, ElementFamily.OTHER_METALS),
     MOSCOVIUM("moscovium", "Mc", 115, 15, 7, 290 ,-1, MetalType.OTHER, ElementFamily.OTHER),
     LIVERMORIUM("livermorium", "Lv", 116, 16, 7, 293, -1, MetalType.OTHER, ElementFamily.OTHER),
     TENNESSINE("tennessine", "Ts", 117, 17, 7, 294, -1, MetalType.OTHER, ElementFamily.OTHER),
@@ -163,9 +163,10 @@ public enum Element {
         LANTHANIDES(new Color(86, 40, 22)),
         ACTINIDES(new Color(114, 17, 58)),
         TRANSITION_METALS(new Color(117, 43, 43)),
-        POST_TRANSITION_METALS(new Color(20, 30, 91)),
-        METALLOIDS(new Color(7, 88, 52)),
-        REACTIVE_NONMETALS(new Color(67, 171, 51)),
+        OTHER_METALS(new Color(20, 30, 91)),
+        METALLOIDS(new Color(7, 78, 52)),
+        HALOGENS(new Color(67, 141, 51)),
+        NONMETALS(new Color(125, 104, 184)),
         NOBLE_GASES(new Color(61, 21, 133)),
         OTHER(new Color(31, 31, 31));
 
@@ -216,12 +217,24 @@ public enum Element {
         this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, stateAtRoomTemperature, MetalType.METAL, ElementFamily.TRANSITION_METALS);
     }
 
+    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MetalType metalType) {
+        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, metalType, ElementFamily.TRANSITION_METALS);
+    }
+
     Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, ElementFamily elementFamily) {
         this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, MetalType.METAL, elementFamily);
     }
 
+    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MatterState stateAtRoomTemperature, ElementFamily elementFamily) {
+        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, stateAtRoomTemperature, MetalType.METAL, elementFamily);
+    }
+
     Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MetalType metalType, ElementFamily elementFamily) {
         this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, metalType, elementFamily);
+    }
+
+    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MatterState matterState, MetalType metalType) {
+        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, matterState, metalType, ElementFamily.TRANSITION_METALS);
     }
 
 }
