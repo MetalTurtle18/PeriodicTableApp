@@ -10,7 +10,7 @@ This is my APCS final project. It allows the user to view the periodic table of 
   * Click on the "Metal Types" button to color elements by metal, nonmetal, and metalloid.
   * Click on the "Element Groups" button to color elements by more specific groupings.
   * Click on the "Electronegativity" button to color elements based on their electronegativity.
-  * [in progress] Click on the "Element Song" button to play the [elements song by Tom Lehrer](https://www.youtube.com/watch?v=zGM-wSKFBpo).
+  * Click on the "Element Song" button to play the [elements song by Tom Lehrer](https://www.youtube.com/watch?v=zGM-wSKFBpo).
   * [in progress] Click on the "Polyatomic Ions" button to view the polyatomic ions window.
 * In the polyatomic ions windows you can:
   * [in progress]
