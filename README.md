@@ -22,3 +22,5 @@ This is my APCS final project. It allows the user to view the periodic table of 
 * [Ptable](https://ptable.com/) for element information.
 * [Java™ Tutorials](https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html) for help with `GridBagLayout`.
 * [Stack Overflow post](https://stackoverflow.com/a/2442614/13335308) for centering a `JFrame` on the screen 
+* [GeeksforGeeks article](https://www.geeksforgeeks.org/play-audio-file-using-java/) for playing music with Java.
+* [Periodic Table of Elements Song](https://www.youtube.com/watch?v=zGM-wSKFBpo)
