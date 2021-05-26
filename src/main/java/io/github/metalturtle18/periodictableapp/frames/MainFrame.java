@@ -125,7 +125,7 @@ public class MainFrame extends JFrame {
         }
         // Adding a column of invisible panels to initialize the GridBag row size
         constraints.gridx = 19;
-        for (int i = 1; i <= 12; i++) {
+        for (int i = 1; i <= 13; i++) {
             constraints.gridy = i;
             add(new BlankCard(1, 69), constraints);
         }

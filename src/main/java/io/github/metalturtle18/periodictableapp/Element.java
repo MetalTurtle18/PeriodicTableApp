@@ -7,7 +7,7 @@ import java.awt.*;
  */
 public enum Element {
 
-    HYDROGEN("hydrogen", "H", 1, 1, 1, 1.008, 2.20, MatterState.GAS, MetalType.NONMETAL, ElementFamily.HALOGENS),
+    HYDROGEN("hydrogen", "H", 1, 1, 1, 1.008, 2.20, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NONMETALS),
     HELIUM("helium", "He", 2, 18, 1, 4.003, -1, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NOBLE_GASES),
     LITHIUM("lithium", "Li", 3, 1, 2, 6.94, 0.98, ElementFamily.ALKALI_METALS),
     BERYLLIUM("beryllium", "Be", 4, 2, 2, 9.012, 1.57, ElementFamily.ALKALINE_EARTH_METALS),
@@ -118,9 +118,9 @@ public enum Element {
     MEITNERIUM("meitnerium", "Mt", 109, 9, 7, 278, -1, MetalType.OTHER, ElementFamily.OTHER),
     DARMSTADTIUM("darmstadtium", "Ds", 110, 10, 7, 281, -1, MetalType.OTHER, ElementFamily.OTHER),
     ROENTGENIUM("roentgenium", "Rg", 111, 11, 7, 282, -1, MetalType.OTHER, ElementFamily.OTHER),
-    COPERNICIUM("copernicium", "Cn", 112, 12, 7, 285, -1, MetalType.OTHER, ElementFamily.TRANSITION_METALS),
+    COPERNICIUM("copernicium", "Cn", 112, 12, 7, 285, -1, MetalType.METAL, ElementFamily.TRANSITION_METALS),
     NIHONIUM("nihonium", "Nh", 113, 13, 7, 286, -1, MetalType.OTHER, ElementFamily.OTHER),
-    FLEROVIUM("flerovium", "Fl", 114, 14, 7, 289, -1, MetalType.OTHER, ElementFamily.OTHER_METALS),
+    FLEROVIUM("flerovium", "Fl", 114, 14, 7, 289, -1, MetalType.METAL, ElementFamily.OTHER_METALS),
     MOSCOVIUM("moscovium", "Mc", 115, 15, 7, 290 ,-1, MetalType.OTHER, ElementFamily.OTHER),
     LIVERMORIUM("livermorium", "Lv", 116, 16, 7, 293, -1, MetalType.OTHER, ElementFamily.OTHER),
     TENNESSINE("tennessine", "Ts", 117, 17, 7, 294, -1, MetalType.OTHER, ElementFamily.OTHER),
@@ -131,8 +131,8 @@ public enum Element {
      */
     public enum MatterState {
         SOLID(Color.WHITE),
-        LIQUID(new Color(61, 179, 179)),
-        GAS(new Color(196, 56, 58));
+        LIQUID(new Color(125, 231, 231)),
+        GAS(new Color(210, 127, 128));
 
         public final Color color;
 
@@ -145,10 +145,10 @@ public enum Element {
      * Metal types of elements
      */
     public enum MetalType {
-        METAL(new Color(117, 43, 43)),
-        NONMETAL(new Color(20, 30, 91)),
-        METALLOID(new Color(7, 88, 52)),
-        OTHER(new Color(31, 31, 31));
+        METAL(new Color(186, 150, 71)),
+        NONMETAL(new Color(27, 57, 145)),
+        METALLOID(new Color(13, 109, 69)),
+        OTHER(PeriodicTableApp.BACKGROUND_COLOR);
 
         public final Color color;
 
@@ -161,17 +161,17 @@ public enum Element {
      * Family categories of elements
      */
     public enum ElementFamily {
-        ALKALI_METALS(new Color(171, 101, 35)),
-        ALKALINE_EARTH_METALS(new Color(179, 149, 59)),
+        ALKALI_METALS(new Color(146, 41, 41)),
+        ALKALINE_EARTH_METALS(new Color(145, 84, 41)),
         LANTHANIDES(new Color(86, 40, 22)),
-        ACTINIDES(new Color(114, 17, 58)),
-        TRANSITION_METALS(new Color(117, 43, 43)),
-        OTHER_METALS(new Color(20, 30, 91)),
-        METALLOIDS(new Color(7, 78, 52)),
-        HALOGENS(new Color(67, 141, 51)),
-        NONMETALS(new Color(125, 104, 184)),
-        NOBLE_GASES(new Color(61, 21, 133)),
-        OTHER(new Color(31, 31, 31));
+        ACTINIDES(new Color(141, 16, 139)),
+        TRANSITION_METALS(new Color(186, 150, 71)),
+        OTHER_METALS(new Color(57, 157, 50)),
+        METALLOIDS(new Color(11, 88, 56)),
+        NONMETALS(new Color(27, 57, 145)),
+        HALOGENS(new Color(79, 52, 141)),
+        NOBLE_GASES(new Color(127, 47, 195)),
+        OTHER(PeriodicTableApp.BACKGROUND_COLOR);
 
         public final Color color;
 
