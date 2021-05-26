@@ -11,11 +11,6 @@ This is my APCS final project. It allows the user to view the periodic table of 
   * Click on the "Element Groups" button to color elements by more specific groupings.
   * Click on the "Electronegativity" button to color elements based on their electronegativity.
   * Click on the "Element Song" button to play the [elements song by Tom Lehrer](https://www.youtube.com/watch?v=zGM-wSKFBpo).
-  * [in progress] Click on the "Polyatomic Ions" button to view the polyatomic ions window.
-* In the polyatomic ions windows you can:
-  * [in progress]
-* Keyboard Shortcuts:
-  * [in progress]
 
 ## Sources
 * [Wikipedia List of Elements](https://en.wikipedia.org/wiki/Chemical_element) for element information.
