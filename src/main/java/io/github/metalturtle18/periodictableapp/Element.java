@@ -2,6 +2,9 @@ package io.github.metalturtle18.periodictableapp;
 
 import java.awt.*;
 
+/**
+ * This enum stores all the elements and their properties
+ */
 public enum Element {
 
     HYDROGEN("hydrogen", "H", 1, 1, 1, 1.008, 2.20, MatterState.GAS, MetalType.NONMETAL, ElementFamily.HALOGENS),
@@ -206,9 +209,8 @@ public enum Element {
     }
 
     /**
-     * Different constructors with defaults because a lot of the elements are solid metals
+     * Different constructors with defaults because a lot of the elements have the same properties that shouldn't need to be specified
      */
-
     Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity) {
         this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, MetalType.METAL, ElementFamily.TRANSITION_METALS);
     }
@@ -217,24 +219,12 @@ public enum Element {
         this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, stateAtRoomTemperature, MetalType.METAL, ElementFamily.TRANSITION_METALS);
     }
 
-    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MetalType metalType) {
-        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, metalType, ElementFamily.TRANSITION_METALS);
-    }
-
     Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, ElementFamily elementFamily) {
         this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, MetalType.METAL, elementFamily);
     }
 
-    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MatterState stateAtRoomTemperature, ElementFamily elementFamily) {
-        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, stateAtRoomTemperature, MetalType.METAL, elementFamily);
-    }
-
     Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MetalType metalType, ElementFamily elementFamily) {
         this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, metalType, elementFamily);
-    }
-
-    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MatterState matterState, MetalType metalType) {
-        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, matterState, metalType, ElementFamily.TRANSITION_METALS);
     }
 
 }

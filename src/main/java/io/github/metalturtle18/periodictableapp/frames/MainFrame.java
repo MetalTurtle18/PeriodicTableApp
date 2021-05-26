@@ -14,9 +14,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * This class is for the main window frame with the periodic table
+ */
 public class MainFrame extends JFrame {
 
+    /**
+     * An ArrayList of every element in the table to simplify some other methods
+     */
     public ArrayList<ElementCard> allElements;
+
     public JPanel buttonPanel, metalLegendPanel, familyLegendPanel, electronegativityLegendPanel;
 
     public MainFrame() {
@@ -59,13 +66,13 @@ public class MainFrame extends JFrame {
         }
 
         // Manually add group and period labels to the main element array
-        int[] rowsList = new int[]{0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 0}; // This is arbitrary but it is just a list of the rows for the group numbers
+        int[] rowsList = new int[]{0, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 0}; // This is an arbitrary list of the rows for the group numbers
         for (int i = 1; i <= 18; i++) // Fill group numbers
-            elements[rowsList[i - 1]][i] = new NumberCard(65, String.valueOf(i), "bottom");
+            elements[rowsList[i - 1]][i] = new NumberCard(65, String.valueOf(i), NumberCard.BOTTOM);
         for (int i = 1; i <= 7; i++) // Fill period numbers
-            elements[i][0] = new NumberCard(65, String.valueOf(i), "right");
+            elements[i][0] = new NumberCard(65, String.valueOf(i), NumberCard.RIGHT);
 
-        // These two loops create a list of elements to use in various other classes
+        // Fill the list of elements to use in various other methods
         allElements = new ArrayList<>();
         for (JPanel[] r : elements) {
             for (JPanel p : r) {
@@ -74,7 +81,6 @@ public class MainFrame extends JFrame {
                 }
             }
         }
-
         for (JPanel[] r : lanActs) {
             for (JPanel p : r) {
                 if (p instanceof ElementCard) {
@@ -83,7 +89,7 @@ public class MainFrame extends JFrame {
             }
         }
 
-        // Create main element panel
+        // Create the main element panel
         elementPanel = new JPanel(new GridLayout(8, 19, 4, 4));
         elementPanel.setBackground(PeriodicTableApp.BACKGROUND_COLOR);
         for (JPanel[] row : elements) {
@@ -92,10 +98,10 @@ public class MainFrame extends JFrame {
             }
         }
 
-        // Create lanthanide and actinide panel
+        // Create the lanthanide and actinide panel
         lanActPanel = new JPanel(new GridLayout(2, 15, 4, 4));
         lanActPanel.setBackground(PeriodicTableApp.BACKGROUND_COLOR);
-        lanActPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        lanActPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0)); // Add a border to this panel so it doesn't touch the main element panel
         for (JPanel[] row : lanActs) {
             for (JPanel p : row) {
                 lanActPanel.add(p);
@@ -173,6 +179,7 @@ public class MainFrame extends JFrame {
             legendPanel.add(new ColoredLabel(Element.MetalType.NONMETAL.color, "Nonmetal"));
             legendPanel.add(new ColoredLabel(Element.MatterState.GAS.color, "Gas", true));
 
+            // Add the label at the top of the panel
             JLabel label = new JLabel("Metal Type Legend");
             label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
             label.setForeground(Color.WHITE);
@@ -208,6 +215,7 @@ public class MainFrame extends JFrame {
             legendPanel.add(new ColoredLabel(Element.ElementFamily.ACTINIDES.color, "Actinides"));
             legendPanel.add(new ColoredLabel(Element.MatterState.GAS.color, "Gas", true));
 
+            // Add the label at the top of the panel
             JLabel label = new JLabel("Element Group Legend");
             label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
             label.setForeground(Color.WHITE);
@@ -228,6 +236,7 @@ public class MainFrame extends JFrame {
             setPreferredSize(new Dimension(690, 120));
             setBorder(BorderFactory.createLineBorder(Color.WHITE, 3, true));
 
+            // Create a new JPanel and initialize it with an anonymous class that draws a gradient rectangle in the middle
             JPanel gradientPanel = new JPanel() {
 
                 @Override
@@ -249,6 +258,7 @@ public class MainFrame extends JFrame {
             gradientPanelContainer.setBackground(PeriodicTableApp.BACKGROUND_COLOR);
             gradientPanelContainer.add(gradientPanel);
 
+            // Add the three labels to this panel
             JLabel lowLabel = new JLabel(" Low");
             lowLabel.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
             lowLabel.setForeground(Color.WHITE);
@@ -290,7 +300,7 @@ public class MainFrame extends JFrame {
             add(metalButton);
 
             familyButton = new JButton("Element Groups");
-            familyButton.addActionListener(new FamilyColorListener()); // TODO: fix not appearing on first change
+            familyButton.addActionListener(new FamilyColorListener());
             add(familyButton);
 
             electronegativityButton = new JButton("Electronegativity");
@@ -312,6 +322,12 @@ public class MainFrame extends JFrame {
         private final String label;
         private final boolean colorText;
 
+        /**
+         * Constructor for a label
+         * @param color the color of the label box
+         * @param label the text of the label
+         * @param colorText whether to color the text the same color as the box
+         */
         public ColoredLabel(Color color, String label, boolean colorText) {
             this.color = color;
             this.label = label;
@@ -321,10 +337,19 @@ public class MainFrame extends JFrame {
             setBackground(PeriodicTableApp.BACKGROUND_COLOR);
         }
 
+        /**
+         * This constructor doesn't require to know if the text should be colored because it defaults to false
+         * @param color the color of the label box
+         * @param label the text of the label
+         */
         public ColoredLabel(Color color, String label) {
             this(color, label, false);
         }
 
+        /**
+         * This method paints the box and text for the label
+         * @param g graphics
+         */
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);

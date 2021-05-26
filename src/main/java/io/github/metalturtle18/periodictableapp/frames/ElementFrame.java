@@ -7,9 +7,10 @@ import io.github.metalturtle18.periodictableapp.panels.ElementCard;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class shows the individual element frames for clicking on each element
+ */
 public class ElementFrame extends JFrame {
-
-    public Element element;
 
     public ElementFrame(Element element) {
         super("Properties of " + capitalize(element.name));
@@ -21,26 +22,29 @@ public class ElementFrame extends JFrame {
         JPanel elementTilePanel, infoPanel;
         JLabel label;
 
+        // Create the element tile panel for the window
         elementTilePanel = new JPanel();
         elementTilePanel.add(new ElementCard(element, 200, false));
         elementTilePanel.setBackground(PeriodicTableApp.BACKGROUND_COLOR);
         elementTilePanel.setBorder(BorderFactory.createEmptyBorder());
 
+        // Create the element information panel for the window
         infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
         infoPanel.setBackground(PeriodicTableApp.BACKGROUND_COLOR);
 
-        label = new JLabel("•Metal Type: " + capitalize(element.metalType.name()));
+        // Add the actual information to the panel
+        label = new JLabel("• Metal Type: " + capitalize(element.metalType.name()));
         label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 30));
         label.setForeground(Color.WHITE);
         infoPanel.add(label);
 
-        label = new JLabel("•Electronegativity: " + (element.electronegativity >= 0 ? element.electronegativity : "not applicable"));
+        label = new JLabel("• Electronegativity: " + (element.electronegativity >= 0 ? element.electronegativity : "not applicable"));
         label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 30));
         label.setForeground(Color.WHITE);
         infoPanel.add(label);
 
-        label = new JLabel("•Group: " + (element.group >= 0 ? element.group : (element.period == 6 ? "lanthanides" : "actinides")) + "; Period: " + element.period);
+        label = new JLabel("• Group: " + (element.group >= 0 ? element.group : (element.period == 6 ? "lanthanides" : "actinides")) + "; Period: " + element.period);
         label.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 30));
         label.setForeground(Color.WHITE);
         infoPanel.add(label);
