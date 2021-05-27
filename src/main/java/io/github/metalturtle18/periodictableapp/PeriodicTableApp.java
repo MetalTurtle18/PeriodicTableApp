@@ -44,6 +44,24 @@ public class PeriodicTableApp {
     }
 
     /**
+     * Close the current element page and display the page for the next element in the table
+     * @param element the current element type
+     */
+    public void incElementPage(Element element) {
+        elementPage.dispose(); // TODO: Change these to edit the existing frame instead of creating a new one
+        elementPage = new ElementFrame(Element.values()[element.atomicNumber == 118 ? 0 : element.atomicNumber]);
+    }
+
+    /**
+     * Close the current element page and display the page for the previous element in the table
+     * @param element the current element type
+     */
+    public void decElementPage(Element element) {
+        elementPage.dispose();
+        elementPage = new ElementFrame(Element.values()[element.atomicNumber == 1 ? 117 : element.atomicNumber - 2]);
+    }
+
+    /**
      * Close the currently open element page and re-open the main periodic table
      */
     public void closeElementPage() {

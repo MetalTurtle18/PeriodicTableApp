@@ -12,6 +12,8 @@ import io.github.metalturtle18.periodictableapp.panels.NumberCard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -22,9 +24,10 @@ public class MainFrame extends JFrame {
     /**
      * An ArrayList of every element in the table to simplify some other methods
      */
-    public ArrayList<ElementCard> allElements;
+    public final ArrayList<ElementCard> allElements;
+    public final JPanel buttonPanel, metalLegendPanel, familyLegendPanel, electronegativityLegendPanel;
 
-    public JPanel buttonPanel, metalLegendPanel, familyLegendPanel, electronegativityLegendPanel;
+    private final ActionListener metalColorListener, familyColorListener, electronegativityColorListener, songListener;
 
     public MainFrame() {
         super("Periodic Table App");
@@ -108,6 +111,11 @@ public class MainFrame extends JFrame {
             }
         }
 
+        metalColorListener = new MetalColorListener();
+        familyColorListener = new FamilyColorListener();
+        electronegativityColorListener = new ElectronegativityColorListener();
+        songListener = new SongButtonListener();
+
         metalLegendPanel = new MetalLegendPanel();
         familyLegendPanel = new FamilyLegendPanel();
         electronegativityLegendPanel = new ElectronegativityLegendPanel();
@@ -155,9 +163,38 @@ public class MainFrame extends JFrame {
         constraints.gridx = 14;
         add(metalLegendPanel, constraints);
 
+        registerShortcuts();
         pack();
         setLocationRelativeTo(null); // This centers the window on the screen
         setVisible(true);
+    }
+
+    /**
+     * This method registers the keyboard shortcuts for the app
+     */
+    private void registerShortcuts() {
+        InputMap map = rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        map.put(KeyStroke.getKeyStroke("M"), "metal_color");
+        map.put(KeyStroke.getKeyStroke("G"), "group_color");
+        map.put(KeyStroke.getKeyStroke("E"), "electronegativity");
+        map.put(KeyStroke.getKeyStroke("S"), "song");
+
+        // This action object does the right action when a key is pressed
+        Action action = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switch(e.getActionCommand()) {
+                    case "m" -> metalColorListener.actionPerformed(null);
+                    case "g" -> familyColorListener.actionPerformed(null);
+                    case "e" -> electronegativityColorListener.actionPerformed(null);
+                    case "s" -> songListener.actionPerformed(null);
+                }
+            }
+        };
+        rootPane.getActionMap().put("metal_color", action);
+        rootPane.getActionMap().put("group_color", action);
+        rootPane.getActionMap().put("electronegativity", action);
+        rootPane.getActionMap().put("song", action);
     }
 
     /**
@@ -284,9 +321,9 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * This class will create a panel that goes on the main page that contains the buttons to change the view of the main page
+     * This class will create a panel that goes on the main page that contains the buttons to change the view of the main page. It can't be static because it accesses instance variables of the outer class
      */
-    private static class ButtonPanel extends JPanel {
+    private class ButtonPanel extends JPanel {
         public ButtonPanel() {
             super(new GridLayout(2, 2));
             setBackground(PeriodicTableApp.BACKGROUND_COLOR);
@@ -296,19 +333,19 @@ public class MainFrame extends JFrame {
             JButton metalButton, familyButton, electronegativityButton, songButton;
 
             metalButton = new JButton("Metal Types");
-            metalButton.addActionListener(new MetalColorListener());
+            metalButton.addActionListener(metalColorListener);
             add(metalButton);
 
             familyButton = new JButton("Element Groups");
-            familyButton.addActionListener(new FamilyColorListener());
+            familyButton.addActionListener(familyColorListener);
             add(familyButton);
 
             electronegativityButton = new JButton("Electronegativity");
-            electronegativityButton.addActionListener(new ElectronegativityColorListener());
+            electronegativityButton.addActionListener(electronegativityColorListener);
             add(electronegativityButton);
 
             songButton = new JButton("Play Song");
-            songButton.addActionListener(new SongButtonListener());
+            songButton.addActionListener(songListener);
             add(songButton);
         }
     }
