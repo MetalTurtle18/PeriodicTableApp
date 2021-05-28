@@ -121,10 +121,53 @@ public enum Element {
     COPERNICIUM("copernicium", "Cn", 112, 12, 7, 285, -1, MetalType.METAL, ElementFamily.TRANSITION_METALS),
     NIHONIUM("nihonium", "Nh", 113, 13, 7, 286, -1, MetalType.OTHER, ElementFamily.OTHER),
     FLEROVIUM("flerovium", "Fl", 114, 14, 7, 289, -1, MetalType.METAL, ElementFamily.OTHER_METALS),
-    MOSCOVIUM("moscovium", "Mc", 115, 15, 7, 290 ,-1, MetalType.OTHER, ElementFamily.OTHER),
+    MOSCOVIUM("moscovium", "Mc", 115, 15, 7, 290, -1, MetalType.OTHER, ElementFamily.OTHER),
     LIVERMORIUM("livermorium", "Lv", 116, 16, 7, 293, -1, MetalType.OTHER, ElementFamily.OTHER),
     TENNESSINE("tennessine", "Ts", 117, 17, 7, 294, -1, MetalType.OTHER, ElementFamily.OTHER),
     OGANESSON("oganesson", "Og", 118, 18, 7, 294, -1, MetalType.OTHER, ElementFamily.OTHER);
+
+    /**
+     * These are the properties of each element. If any property is -1 that means it does not exist
+     */
+    public final String name;
+    public final String symbol;
+    public final int atomicNumber;
+    public final int group;
+    public final int period;
+    public final double atomicMass;
+    public final double electronegativity;
+    public final MatterState stateAtRoomTemperature;
+    public final MetalType metalType;
+    public final ElementFamily elementFamily;
+    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MatterState stateAtRoomTemperature, MetalType metalType, ElementFamily elementFamily) {
+        this.name = name;
+        this.symbol = symbol;
+        this.atomicNumber = atomicNumber;
+        this.group = group;
+        this.period = period;
+        this.atomicMass = atomicMass;
+        this.electronegativity = electronegativity;
+        this.stateAtRoomTemperature = stateAtRoomTemperature;
+        this.metalType = metalType;
+        this.elementFamily = elementFamily;
+    }
+    /**
+     * Different constructors with defaults because a lot of the elements have the same properties that shouldn't need to be specified
+     */
+    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity) {
+        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, MetalType.METAL, ElementFamily.TRANSITION_METALS);
+    }
+    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MatterState stateAtRoomTemperature) {
+        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, stateAtRoomTemperature, MetalType.METAL, ElementFamily.TRANSITION_METALS);
+    }
+
+    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, ElementFamily elementFamily) {
+        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, MetalType.METAL, elementFamily);
+    }
+
+    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MetalType metalType, ElementFamily elementFamily) {
+        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, metalType, elementFamily);
+    }
 
     /**
      * States of matter
@@ -179,52 +222,6 @@ public enum Element {
             this.color = color;
         }
 
-    }
-
-    /**
-     * These are the properties of each element. If any property is -1 that means it does not exist
-     */
-    public final String name;
-    public final String symbol;
-    public final int atomicNumber;
-    public final int group;
-    public final int period;
-    public final double atomicMass;
-    public final double electronegativity;
-    public final MatterState stateAtRoomTemperature;
-    public final MetalType metalType;
-    public final ElementFamily elementFamily;
-
-    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MatterState stateAtRoomTemperature, MetalType metalType, ElementFamily elementFamily) {
-        this.name = name;
-        this.symbol = symbol;
-        this.atomicNumber = atomicNumber;
-        this.group = group;
-        this.period = period;
-        this.atomicMass = atomicMass;
-        this.electronegativity = electronegativity;
-        this.stateAtRoomTemperature = stateAtRoomTemperature;
-        this.metalType = metalType;
-        this.elementFamily = elementFamily;
-    }
-
-    /**
-     * Different constructors with defaults because a lot of the elements have the same properties that shouldn't need to be specified
-     */
-    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity) {
-        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, MetalType.METAL, ElementFamily.TRANSITION_METALS);
-    }
-
-    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MatterState stateAtRoomTemperature) {
-        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, stateAtRoomTemperature, MetalType.METAL, ElementFamily.TRANSITION_METALS);
-    }
-
-    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, ElementFamily elementFamily) {
-        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, MetalType.METAL, elementFamily);
-    }
-
-    Element(String name, String symbol, int atomicNumber, int group, int period, double atomicMass, double electronegativity, MetalType metalType, ElementFamily elementFamily) {
-        this(name, symbol, atomicNumber, group, period, atomicMass, electronegativity, MatterState.SOLID, metalType, elementFamily);
     }
 
 }

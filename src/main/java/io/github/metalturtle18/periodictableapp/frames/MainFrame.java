@@ -183,7 +183,7 @@ public class MainFrame extends JFrame {
         Action action = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch(e.getActionCommand()) {
+                switch (e.getActionCommand()) {
                     case "m" -> metalColorListener.actionPerformed(null);
                     case "g" -> familyColorListener.actionPerformed(null);
                     case "e" -> electronegativityColorListener.actionPerformed(null);
@@ -321,6 +321,57 @@ public class MainFrame extends JFrame {
     }
 
     /**
+     * This class makes it easy to draw the colored square and text for the legend panels
+     */
+    private static class ColoredLabel extends JPanel {
+
+        private final Color color;
+        private final String label;
+        private final boolean colorText;
+
+        /**
+         * Constructor for a label
+         *
+         * @param color     the color of the label box
+         * @param label     the text of the label
+         * @param colorText whether to color the text the same color as the box
+         */
+        public ColoredLabel(Color color, String label, boolean colorText) {
+            this.color = color;
+            this.label = label;
+            this.colorText = colorText;
+
+            setPreferredSize(new Dimension(getWidth(), 30));
+            setBackground(PeriodicTableApp.BACKGROUND_COLOR);
+        }
+
+        /**
+         * This constructor doesn't require to know if the text should be colored because it defaults to false
+         *
+         * @param color the color of the label box
+         * @param label the text of the label
+         */
+        public ColoredLabel(Color color, String label) {
+            this(color, label, false);
+        }
+
+        /**
+         * This method paints the box and text for the label
+         *
+         * @param g graphics
+         */
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.setColor(color);
+            g.fillRect(5, 5, 20, 20);
+            if (!colorText) g.setColor(Color.WHITE);
+            g.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
+            g.drawString(label, 30, 21);
+        }
+    }
+
+    /**
      * This class will create a panel that goes on the main page that contains the buttons to change the view of the main page. It can't be static because it accesses instance variables of the outer class
      */
     private class ButtonPanel extends JPanel {
@@ -347,54 +398,6 @@ public class MainFrame extends JFrame {
             songButton = new JButton("Play Song");
             songButton.addActionListener(songListener);
             add(songButton);
-        }
-    }
-
-    /**
-     * This class makes it easy to draw the colored square and text for the legend panels
-     */
-    private static class ColoredLabel extends JPanel {
-
-        private final Color color;
-        private final String label;
-        private final boolean colorText;
-
-        /**
-         * Constructor for a label
-         * @param color the color of the label box
-         * @param label the text of the label
-         * @param colorText whether to color the text the same color as the box
-         */
-        public ColoredLabel(Color color, String label, boolean colorText) {
-            this.color = color;
-            this.label = label;
-            this.colorText = colorText;
-
-            setPreferredSize(new Dimension(getWidth(), 30));
-            setBackground(PeriodicTableApp.BACKGROUND_COLOR);
-        }
-
-        /**
-         * This constructor doesn't require to know if the text should be colored because it defaults to false
-         * @param color the color of the label box
-         * @param label the text of the label
-         */
-        public ColoredLabel(Color color, String label) {
-            this(color, label, false);
-        }
-
-        /**
-         * This method paints the box and text for the label
-         * @param g graphics
-         */
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.setColor(color);
-            g.fillRect(5, 5, 20, 20);
-            if (!colorText) g.setColor(Color.WHITE);
-            g.setFont(new Font("SFProRounded-Regular", Font.PLAIN, 15));
-            g.drawString(label, 30, 21);
         }
     }
 }

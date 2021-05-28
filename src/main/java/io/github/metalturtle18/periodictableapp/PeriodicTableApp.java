@@ -12,23 +12,12 @@ import java.awt.*;
 public class PeriodicTableApp {
 
     /**
-     * The different display modes the app can be in
-     */
-    public enum DisplayMode {
-        METAL,
-        GROUP,
-        ELECTRONEGATIVITY
-    }
-
-    /**
      * The global background color for all panels
      */
     public static final Color BACKGROUND_COLOR = new Color(41, 42, 50);
-
+    public static DisplayMode displayMode = DisplayMode.METAL;
     public MainFrame mainPage;
     public ElementFrame elementPage;
-
-    public static DisplayMode displayMode = DisplayMode.METAL;
 
     public PeriodicTableApp() {
         mainPage = new MainFrame();
@@ -36,29 +25,35 @@ public class PeriodicTableApp {
 
     /**
      * Display an element info panel on the screen
+     *
      * @param element the element type to display
      */
     public void openElementPage(Element element) {
         mainPage.setVisible(false);
-        elementPage = new ElementFrame(element);
+        // If the page is already initialized, it should just change the element instead of re-initializing it
+        if (elementPage == null)
+            elementPage = new ElementFrame(element);
+        else
+            elementPage.changeElement(element);
+        elementPage.setVisible(true);
     }
 
     /**
-     * Close the current element page and display the page for the next element in the table
+     * Change the element page to show the next element in the table
+     *
      * @param element the current element type
      */
     public void incElementPage(Element element) {
-        elementPage.dispose(); // TODO: Change these to edit the existing frame instead of creating a new one
-        elementPage = new ElementFrame(Element.values()[element.atomicNumber == 118 ? 0 : element.atomicNumber]);
+        elementPage.changeElement(Element.values()[element.atomicNumber == 118 ? 0 : element.atomicNumber]);
     }
 
     /**
-     * Close the current element page and display the page for the previous element in the table
+     * Change the element page to show the previous element in the table
+     *
      * @param element the current element type
      */
     public void decElementPage(Element element) {
-        elementPage.dispose();
-        elementPage = new ElementFrame(Element.values()[element.atomicNumber == 1 ? 117 : element.atomicNumber - 2]);
+        elementPage.changeElement(Element.values()[element.atomicNumber == 1 ? 117 : element.atomicNumber - 2]);
     }
 
     /**
@@ -66,6 +61,15 @@ public class PeriodicTableApp {
      */
     public void closeElementPage() {
         mainPage.setVisible(true);
-        elementPage.dispose();
+        elementPage.setVisible(false);
+    }
+
+    /**
+     * The different display modes the app can be in
+     */
+    public enum DisplayMode {
+        METAL,
+        GROUP,
+        ELECTRONEGATIVITY
     }
 }

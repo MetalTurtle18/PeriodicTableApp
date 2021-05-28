@@ -21,9 +21,10 @@ public class NumberCard extends JPanel {
 
     /**
      * Construct a new number panel
-     * @param width the width of the panel
-     * @param height the height of the panel
-     * @param text the number on the panel
+     *
+     * @param width    the width of the panel
+     * @param height   the height of the panel
+     * @param text     the number on the panel
      * @param location if the panel should be on the right of left
      */
     public NumberCard(int width, int height, String text, String location) {

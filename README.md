@@ -6,11 +6,15 @@ This is my APCS final project. It allows the user to view the periodic table of 
 
 * Start the program by running `Main.main()`
 * In the periodic table window you can:
-  * Click on an element to view its information. Click on the element in the information panel to return to the periodic table.
+  * Click on an element to view its information.
   * Click on the "Metal Types" button to color elements by metal, nonmetal, and metalloid.
   * Click on the "Element Groups" button to color elements by more specific groupings.
   * Click on the "Electronegativity" button to color elements based on their electronegativity.
   * Click on the "Element Song" button to play the [elements song by Tom Lehrer](https://www.youtube.com/watch?v=zGM-wSKFBpo).
+* In an element information panel you can:
+  * Click on the element card to return to the periodic table.
+  * Click on the "Copy to clipboard" button to copy the element information to your clipboard 
+  
 * Keyboard shortcuts:
   * On the main page:
     * Press `M` to switch to metal coloring
@@ -19,6 +23,7 @@ This is my APCS final project. It allows the user to view the periodic table of 
     * Press `S` to play and stop the elements song
   * On an info page:
     * Press `B` to go back to the main page
+    * Press `C` to copy the element information to your clipboard
     * Press the left arrow key to go to the previous element
     * Press the right arrow key to go to the next element 
 
@@ -30,3 +35,4 @@ This is my APCS final project. It allows the user to view the periodic table of 
 * [GeeksforGeeks article](https://www.geeksforgeeks.org/play-audio-file-using-java/) for playing music with Java.
 * [Periodic Table of Elements Song](https://www.youtube.com/watch?v=zGM-wSKFBpo)
 * [Camshaft54](https://github.com/Camshaft54) for helping me with keyboard shortcuts
+* [Stack Overflow post](https://stackoverflow.com/a/6713290/13335308) for copying text to the clipboard

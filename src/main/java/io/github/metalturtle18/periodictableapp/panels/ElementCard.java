@@ -16,14 +16,14 @@ public class ElementCard extends JPanel implements MouseListener {
 
     private final Element element;
     private final boolean isInTable;
-
-    private Color color;
     private final JLabel numberLabel;
+    private Color color;
 
     /**
      * The constructor sets up the panel with default properties
+     *
      * @param element the type of element this card is
-     * @param size the size of this specific element card
+     * @param size    the size of this specific element card
      * @param inTable whether the card is in the table or somewhere else
      */
     public ElementCard(Element element, int size, boolean inTable) {
@@ -32,7 +32,7 @@ public class ElementCard extends JPanel implements MouseListener {
         isInTable = inTable;
 
         // Since the user can click on elements in any display mode, they should display in the correct mode even in the info panel. This switch puts them into the correct mode
-        switch(PeriodicTableApp.displayMode) {
+        switch (PeriodicTableApp.displayMode) {
             case GROUP -> color = element.elementFamily.color;
             case ELECTRONEGATIVITY -> {
                 if (element.electronegativity != -1)
@@ -94,6 +94,7 @@ public class ElementCard extends JPanel implements MouseListener {
 
     /**
      * Set the color of the panel
+     *
      * @param color the color to set the panel to
      */
     public void setColor(Color color) {
@@ -120,6 +121,7 @@ public class ElementCard extends JPanel implements MouseListener {
 
     /**
      * Getter for the element panel's element type
+     *
      * @return the element type of the panel
      */
     public Element getElement() {
@@ -128,6 +130,7 @@ public class ElementCard extends JPanel implements MouseListener {
 
     /**
      * Event for when the tile is clicked.
+     *
      * @param e event
      */
     @Override
@@ -149,6 +152,7 @@ public class ElementCard extends JPanel implements MouseListener {
 
     /**
      * Hover effect to highlight the panel
+     *
      * @param e event
      */
     @Override
@@ -158,6 +162,7 @@ public class ElementCard extends JPanel implements MouseListener {
 
     /**
      * Hover effect to un-highlight the panel
+     *
      * @param e event
      */
     @Override

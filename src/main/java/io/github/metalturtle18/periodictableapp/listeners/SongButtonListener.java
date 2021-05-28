@@ -35,6 +35,7 @@ public class SongButtonListener implements ActionListener, LineListener {
 
     /**
      * When the button is pressed on the main page, call this method
+     *
      * @param ae action event
      */
     @Override
@@ -44,8 +45,7 @@ public class SongButtonListener implements ActionListener, LineListener {
             clip.close();
             initializeAudioPlayer();
             isPlaying = false;
-        }
-        else {
+        } else {
             clip.start();
             isPlaying = true;
         }
