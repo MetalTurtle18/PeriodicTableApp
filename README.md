@@ -1,6 +1,6 @@
 # Periodic Table App
 
-This is my APCS final project. It allows the user to view the periodic table of elements in an interactive way. They can be color coded by metal type, group type, or electronegativity. The user can click on every element to view more information about it in a new window. The user can also copy information about an element to their clipboard from the information panel. All windows contain keyboard shortcuts for simple navigation.
+This is my APCS final project. It allows the user to view the periodic table of elements in an interactive way. They can be color coded by metal type, group type, or electronegativity. The user can click on every element to view more information about it in a new window. The user can also copy information about an element to their clipboard from the information panel. All windows contain keyboard shortcuts for simple navigation. The periodic table of elements song plays by pressing a button or a keyboard shortcut.
 
 ## Instructions
 
