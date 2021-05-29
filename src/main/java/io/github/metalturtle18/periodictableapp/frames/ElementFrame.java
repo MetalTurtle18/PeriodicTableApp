@@ -147,6 +147,9 @@ public class ElementFrame extends JFrame {
         repaint();
     }
 
+    /**
+     * This method creates a string with the element properties and saves it to the clipboard
+     */
     public void copyDataToClipboard() {
         StringBuilder text = new StringBuilder();
         Element element = elementCard.getElement();

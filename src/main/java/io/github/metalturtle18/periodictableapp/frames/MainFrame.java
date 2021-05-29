@@ -240,15 +240,15 @@ public class MainFrame extends JFrame {
             // These are the twelve items in the legend panel
             JPanel legendPanel = new JPanel(new GridLayout(3, 4));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.ALKALI_METALS.color, "Alkali metals"));
+            legendPanel.add(new ColoredLabel(Element.ElementFamily.OTHER_METALS.color, "Other Metals"));
+            legendPanel.add(new ColoredLabel(Element.ElementFamily.HALOGENS.color, "Halogens"));
+            legendPanel.add(new ColoredLabel(Element.ElementFamily.LANTHANIDES.color, "Lanthanides"));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.ALKALINE_EARTH_METALS.color, "Alkaline earth metals"));
+            legendPanel.add(new ColoredLabel(Element.ElementFamily.METALLOIDS.color, "Metalloids"));
+            legendPanel.add(new ColoredLabel(Element.ElementFamily.NOBLE_GASES.color, "Noble gases"));
+            legendPanel.add(new ColoredLabel(Element.MatterState.LIQUID.color, "Liquid", true));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.TRANSITION_METALS.color, "Transition metals"));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.NONMETALS.color, "Nonmetals"));
-            legendPanel.add(new ColoredLabel(Element.ElementFamily.OTHER_METALS.color, "Other Metals"));
-            legendPanel.add(new ColoredLabel(Element.ElementFamily.METALLOIDS.color, "Metalloids"));
-            legendPanel.add(new ColoredLabel(Element.ElementFamily.HALOGENS.color, "Halogens"));
-            legendPanel.add(new ColoredLabel(Element.MatterState.LIQUID.color, "Liquid", true));
-            legendPanel.add(new ColoredLabel(Element.ElementFamily.NOBLE_GASES.color, "Noble gases"));
-            legendPanel.add(new ColoredLabel(Element.ElementFamily.LANTHANIDES.color, "Lanthanides"));
             legendPanel.add(new ColoredLabel(Element.ElementFamily.ACTINIDES.color, "Actinides"));
             legendPanel.add(new ColoredLabel(Element.MatterState.GAS.color, "Gas", true));
 

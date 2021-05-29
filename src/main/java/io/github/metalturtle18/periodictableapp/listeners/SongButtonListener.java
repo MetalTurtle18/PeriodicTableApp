@@ -23,7 +23,7 @@ public class SongButtonListener implements ActionListener, LineListener {
      */
     private void initializeAudioPlayer() {
         try {
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("song.wav").getAbsoluteFile());
+            @SuppressWarnings("ConstantConditions") AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(getClass().getResource("/song.wav").getFile()).getAbsoluteFile());
             clip = AudioSystem.getClip();
             clip.open(inputStream);
             clip.addLineListener(this); // Add a listener for when the track finishes playing
