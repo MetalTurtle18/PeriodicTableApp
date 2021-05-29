@@ -139,6 +139,7 @@ public class ElementFrame extends JFrame {
         elementCard = new ElementCard(element, 200, false);
         elementTilePanel.remove(0);
         elementTilePanel.add(elementCard);
+        setTitle("Properties of " + capitalize(element.name));
         metalTypeLabel.setText("• Metal Type: " + capitalize(element.metalType.name()));
         electronegativityLabel.setText("• Electronegativity: " + (element.electronegativity >= 0 ? element.electronegativity : "not applicable"));
         groupPeriodLabel.setText("• Group: " + (element.group >= 0 ? element.group : (element.period == 6 ? "lanthanides" : "actinides")) + "; Period: " + element.period);
