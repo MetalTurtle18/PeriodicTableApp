@@ -61,7 +61,7 @@ public enum Element {
     TELLURIUM("tellurium", "Te", 52, 16, 5, 127.6, 2.1, MetalType.METALLOID, ElementFamily.METALLOIDS),
     IODINE("iodine", "I", 53, 17, 5, 126.9, 2.66, MetalType.NONMETAL, ElementFamily.HALOGENS),
     XENON("xenon", "Xe", 54, 18, 5, 131.3, -1, MatterState.GAS, MetalType.NONMETAL, ElementFamily.NOBLE_GASES),
-    CAESIUM("caesium", "Cs", 55, 1, 6, 132.9, 0.79, ElementFamily.ALKALI_METALS),
+    CESIUM("cesium", "Cs", 55, 1, 6, 132.9, 0.79, ElementFamily.ALKALI_METALS),
     BARIUM("barium", "Ba", 56, 2, 6, 137.3, 0.89, ElementFamily.ALKALINE_EARTH_METALS),
     LANTHANUM("lanthanum", "La", 57, -1, 6, 138.9, 1.1, ElementFamily.LANTHANIDES),
     CERIUM("cerium", "Ce", 58, -1, 6, 140.1, 1.12, ElementFamily.LANTHANIDES),
